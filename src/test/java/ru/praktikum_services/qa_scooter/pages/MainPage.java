@@ -60,12 +60,4 @@ public class MainPage {
         driver.findElement(orderButtonBottom).click();
     }
 
-//    public void clickQuestionButton() {
-//        driver.findElement(questionButton).click();
-//    }
-//
-//    public String getQuestionAnswerText() {
-//        return driver.findElement(questionAnswer).getText();
-//    }
-
 }

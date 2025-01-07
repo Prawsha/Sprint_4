@@ -7,11 +7,12 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import ru.praktikum_services.qa_scooter.pages.MainPage;
 import ru.praktikum_services.qa_scooter.pages.OrderPage;
 
 import java.util.concurrent.TimeUnit;
+
+import static ru.praktikum_services.qa_scooter.tests.ForDifferentBrowsers.*;
 
 @RunWith(Parameterized.class)
 
@@ -35,7 +36,6 @@ public class OrderTestsChrome {
 
     @Parameterized.Parameters
     public static Object[][] getTestData() {
-        //Сгенерируй тестовые данные (свою учётку и несколько случайных)
         return new Object[][] {
                 {"Иван", "Иванов", "Вавилова, 22", "89009009900", "Домофон 321"},
                 {"Людмила", "Смирнова", "Академическая, 2, 4", "89669112233", "Позвоните за 15 минут"},
@@ -44,10 +44,9 @@ public class OrderTestsChrome {
 
     @Before
     public void setUp() {
-        System.setProperty("webdriver.chrome.driver", "C:\\Users\\qaeng\\Desktop\\ForTests\\chromedriver.exe");
-        driver = new ChromeDriver();
+        driver = getWebDriver(BROWSER_NAME);
         driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
-        driver.get("https://qa-scooter.praktikum-services.ru/");
+        driver.get(URL_QA_SCOOTER);
         mainPage = new MainPage(driver);
         orderPage = new OrderPage(driver);
     }

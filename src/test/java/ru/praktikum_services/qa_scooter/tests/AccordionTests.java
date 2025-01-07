@@ -7,14 +7,15 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import ru.praktikum_services.qa_scooter.pages.MainPage;
 
 import java.util.concurrent.TimeUnit;
 
+import static ru.praktikum_services.qa_scooter.tests.ForDifferentBrowsers.*;
+
 
 @RunWith(Parameterized.class)
-    public class AccordionTestsChrome {
+    public class AccordionTests {
         private WebDriver driver;
         private MainPage mainPage;
 
@@ -22,7 +23,7 @@ import java.util.concurrent.TimeUnit;
     private int questionIndex;
     private String expectedContent;
 
-    public AccordionTestsChrome(int questionIndex, String expectedContent){
+    public AccordionTests(int questionIndex, String expectedContent){
         this.questionIndex = questionIndex;
         this.expectedContent = expectedContent;
     }
@@ -43,10 +44,9 @@ import java.util.concurrent.TimeUnit;
 
     @Before
     public void setUp() {
-        System.setProperty("webdriver.chrome.driver", "C:\\Users\\qaeng\\Desktop\\ForTests\\chromedriver.exe");
-        driver = new ChromeDriver();
+        driver = getWebDriver(BROWSER_NAME);
         driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
-        driver.get("https://qa-scooter.praktikum-services.ru/");
+        driver.get(URL_QA_SCOOTER);
         mainPage = new MainPage(driver);
     }
 
